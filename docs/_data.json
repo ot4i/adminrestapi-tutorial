@@ -1,0 +1,267 @@
+{
+    "version": "0.6",
+    "pageContent":
+	{
+        "_comments": "JSON object that contains data for page labels, buttons, etc.",
+        "navItems":
+		{
+            "_common":
+      			{
+                "buttonBackToGallery":
+        				{
+                    "name": "Back To Gallery",
+          					"method": "backToGallery()",
+          					"idName": "backToGallery"
+                },
+                "buttonStartTutorial":
+        				{
+                    "name": "Start Tutorial",
+          					"method": "startTutorialFromDetailsScreen()",
+          					"idName": "startTutorial"
+                },
+        				"buttonViewDetails":
+        				{
+                    "name": "View Details",
+          					"method": "viewDetails()",
+          					"idName": "stepsViewDetails"
+                }
+            }
+        }
+    },
+    "tutorial":
+  	{
+        "_common":
+    		{
+            "name": "Exploring the Admin REST Api",
+            "shortDescription": "Learn interact with Integration Servers and Nodes using our Admin REST Api.",
+            "durationText": "This tutorial takes approximately",
+            "durationTime": "15 minutes",
+            "_resourceToOpenComment": "The ID of the first resource to open when the user imports the tutorial. Resource IDs are defined in the repo_metadata.json Tutorials listing on ot4i.",
+            "resourceToOpen": "EventRoutingFlow",
+            "helpLink":
+      			{
+                "text": "IBM Knowledge Center",
+                "link": "/com.ibm.etools.msgbroker.helphome.doc/help_home_msgbroker.htm"
+            }
+        },
+        "pageDetails":
+    		{
+            "topicsName": "Tutorial Topics",
+            "_topicListComment": "A short list of product concepts or tasks demonstrated by this tutorial",
+            "topicList":
+      			[
+                {
+                    "title": "Accessing the Admin REST Api documentation"
+                },
+                {
+                    "title": "Learning how to use the documentation features to intreact with the api."
+                },
+                {
+                    "title": "Intracting with a standalone Integration Server"
+                },
+                {
+                    "title": "Interacting with an Integration Node and its child servers"
+                }
+            ],
+            "outcomesName": "Learning outcomes",
+            "_outcomesComment": "A description of what the user will have learned or accomplished by running this tutorial.",
+            "outcomeList":
+      			[
+                {
+                    "title": "Understand the value of, how to access and use the documentation for the Admin REST Api in ACE."
+                }
+            ],
+            "summary":
+      			{
+                "overviewName": "OVERVIEW",
+                "_overviewComment": "A short description of what happens in this tutorial, and an optional short explanation of the ACE concepts used in this tutorial if necessary for context. What background knowledge must the user have for this to make sense?",
+                "sections":
+        				[
+                    {
+                        "section": "This tutorial shows how a user would go about accessing the documentation for our Admin REST Api for servers and nodes alike. The example will guide the user to perform essential actions on nodes and servers exclusively through the documentation's features."
+                    },
+                    {
+                        "section": "The user will access the docs for a standalone server and a node. They will be guided through the similarities and differences between the documentation for each of them and how to use them to accomplish tasks and gather essential information."
+                    },
+                    {
+                        "section": "The documentation is designed to make interacting with, and learning about, our integration services a lot more accessible while still maintaining as much functionality as possible. Here users can not only manage all aspects of their services but learn the capabilities of our Admin REST Api to the fullest extent, without the need to leave your working environment."
+                    }
+                ]
+            }
+        },
+        "pageSteps":
+    		{
+            "create":
+      			{
+                "overview":
+        				{
+                    "name": "Create",
+                    "heading": "Import projects",
+                    "_createComment": "A description of what will happen when the user clicks Import.",
+                    "sections":
+          					[
+                        {
+                            "section": "When you click Import, 2 entities will be created in your workspace: the <span class='application'>SimpleApp</span> application, conatining three message flows, and the <span class='application'>SimpleBar</span> BAR file."
+                        },
+                  			{
+                  			    "section": "The contents of this tutorial will be explained in more detail when you move on to the Prepare tab."
+                  			}
+                    ]
+                },
+                "actions":
+        				{
+                    "title": "Create Actions",
+                    "details":
+          					[
+                        {
+                            "name": "Import",
+                            "method": "importArtifacts()"
+                        }
+                    ]
+                }
+            },
+            "prepare":
+      			{
+                "overview":
+        				{
+                    "name": "Prepare",
+                    "heading": "Prepare an Integration Server",
+                    "_prepareComment": "Enable resource statistics tracking:",
+                    "sections":
+          					[
+                      {
+                        "steps":
+                        {
+                          "type": "ordered",
+                          "details":
+                          [
+                            {
+                                "details": "Assuming you are using a Windows platform, start up your Integration Server by typing the following command into the ACE Command Console:<br><code>IntegrationServer --name MyServer --work-dir C:\\MyServer</code><br>Where C:\\MyServer will be the working directory for your server."
+                            },
+                            {
+                                "details": "Open up your preferred web browser and type this link into the search bar:<br><code>localhost:7600/apidocs/</code>"
+                            },
+                            {
+                                "details": "After a moment you should be presented with some comprehensive documentation on the Admin REST Api, specifically for your standalone server."
+                            },
+                            {
+                                "details": "Now, create and launch an Integration Node in a seperate ACE Command Console. By default the port for a node is 4414, which is what this tutorial will assume your port is."
+                            },
+                            {
+                                "details": "Once created and launched, open up a new tab in your web browser and connect to:<br><code>localhost:4414/apidocs/</code>"
+                            },
+                            {
+                                "details": "Once again you should be presented with a page of documentation. However, there are a few key differences in the actions permitted by the Api when dealing with a node as opposed to a standalone server."
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                },
+                "actions":
+        				{
+                    "title": "Prepare Actions",
+                    "details":
+          					[
+                        {
+                            "name": "Deploy",
+                            "method": "deployArtifacts()"
+                        }
+                    ]
+                }
+            },
+            "run":
+      			{
+                "overview":
+        				{
+                    "name": "Run",
+                    "heading": "Follow these steps to complete the tutorial",
+                    "_runComment": "The full steps for the user to run through the tutorial. Use 'sections' to render paragraphs, 'steps' with a type of 'ordered' or 'unordered' to render HTML lists, and 'substeps' to render nested lists.",
+                    "sections":
+          					[
+                        {
+                            "section": "Standalone server:",
+                            "steps":
+              							{
+                                "type": "ordered",
+                                "details":
+                								[
+                                    {
+                                        "details": "Open the tab with the documentation for your standalone server.<br>On the left hand side you should see all the available actions through the api. In this part of the tutorial we are going to GET the details for this server, DEPLOY a simple application to the server, interact with this application on the server and then shut down the server; all from the documentation."
+                                    },
+                                    {
+                                        "details": "Click on the <code>GET /</code> tab in the list of actions. The body of the docs should change to present you with all the details on this action. You'll be presented with the description of the action, it's parameters (and their structure), example requests from various languages (curl, python etc.) and examples of the standard responses.<br>Go back to the top of this page and select the 'Try it' tab."
+                                    },
+                                    {
+                                        "details": "Here you can run the action against your server as an example. Don't change anything for now, go ahead and click 'Send' in the bottom-right. After a brief pause you should be presented with the real request to, and response from, your server."
+                        				    },
+                        				    {
+                                        "details": "Scrolling down and inspecting the JSON response, you should see a few sections:<br> - The name and type of your server at the very top<br> - A section called 'actions' which shows you all the valid actions on the server itself<br> - Below sections such as 'applications', 'policies' and 'restApis' with details on whether they contain any children."
+                        				    },
+                        				    {
+                                        "details": "As you can see in the 'actions' section, one of the actions we can perform is 'deploy'. Navigate within the list on the left to <code>POST /deploy</code> and 'Try it'.<br>Generate a Body for the request by using the 'Generate' button above the entry box, then include:<code>LINK TO BAR</code>"
+                        				    },
+                        				    {
+                                        "details": "After deployment, you should now see that after running another <code>GET /</code> on your server Applications now has children. If you go down to <code>GET /applications</code> on the left and try that out the response should display the name 'SimpleApp'"
+                        				    },
+                        				    {
+                                        "details": "Run a <code>GET /applications/{application}</code> to get more details about the deployed application. Change the parameters of the request as necessary."
+                        				    },
+                        				    {
+                                        "details": "Finally, navigate to <code>POST /shutdown</code> and trigger a shutdown event to stop the server. Refreshing the page or checking the ACE Command Console will confirm whether the server has actually terminated or not."
+                        				    }
+                                ]
+                            }
+                        },
+                        {
+                            "section": "Integration Node:",
+                            "steps":
+              							{
+                                "type": "ordered",
+                                "details":
+                								[
+                                    {
+                                        "details": "In this section we will assume you have completed the above tutorial for the standalone server."
+                                    },
+                                    {
+                                        "details": "Open the tab with the documentation for your integration node.<br>On the left hand side you should see all the available actions through the api. In this part of the tutorial we are going to create a server under the node, fetch the server properties and then remove the server all from within this documentation."
+                                    },
+                                    {
+                                        "details": "Navigate to <code>GET /servers</code> and Try it out. After sending the request to the Node you should recieve a response, either showing that there are no child servers or displaying details about any existing ones."
+                                    },
+                                    {
+                                        "details": "Now, navigate to <code>POST /servers</code> and proceed to the 'Try it' section. Generate an input for the Body field and then simply change the name to 'myNodeServer' for now. Click 'Send' and run another <code>GET /servers</code> to see the updated server list."
+                                    },
+                                    {
+                                        "details": "Assuming the above steps have gone well, navigate to <code>GET /servers/{server}</code> and the 'Try it' section. Copy the name of your newly created server into the 'Path' field and click send. The response at the bottom of the page should then present all the properties of the newly created server to you."
+                                    },
+                                    {
+                                        "details": "Then, navigate to <code>POST /servers/{server}/stop</code> then under 'Try it' input the name of your new server and click 'Send' to stop the server. This may take a while, wait patiently."
+                                    },
+                                    {
+                                        "details": "Finally, navigate to <code>DELETE /servers/{server}</code> then under 'Try it' input the name of your stopped server and click 'Send' to delete the server."
+                                    },
+                                    {
+                                        "details": "Run one last get request against the Node to check that the server doesn't exist anymore."
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+				"exits":
+				{
+					"title": "Run Exits",
+					"details":
+					[
+						{
+							"name": "Clean Up",
+							"description": "Clean up and remove any changes in your workspace made by the tutorial.",
+							"method": "cleanUp()"
+						}
+					]
+				}
+            }
+        }
+    }
+}
