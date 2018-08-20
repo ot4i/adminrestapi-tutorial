@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+ 
+	
+<!-- header::Start -->
+	<head>
+		<!-- Use Internet Explorer 9 Standards mode for Eclipse Browser Control - https://www.eclipse.org/swt/faq.php#browsernativeie and https://msdn.microsoft.com/en-us/library/jj676915%28v=vs.85%29.aspx -->
+  		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+		
+		<!-- Next 2 http=equiv headers required to disable caching the Eclipse Browser Widget -->
+		<meta http-equiv="Pragma" content="no-cache">
+  		<meta http-equiv="Expires" content="-1">
+
+		<meta charset="UTF-8"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<meta name="copyright" content="Copyright IBM Corporation 2014" />
+		<meta name="abstract" content="IBM Integration Bus V10 Tutorial">
+		<meta name="author" content="IBM">
+		<meta name="description" content="IBM Integration Bus V10 Tutorial">
+		<meta name="keywords" content="keywords" > 
+		<meta name="robots" content="index,follow">
+		<meta name="source" content="IBM Integration Bus V10 Tutorial" /> 
+		
+		<title>IBM Integration Bus V10 Tutorial</title>
+
+    	<link rel="stylesheet" href="http://ot4i.github.io/iib-tutorials/css/main.css" />
+		<link rel="stylesheet" href="http://ot4i.github.io/iib-tutorials/css/app.css" />
+    	
+		<script src="http://ot4i.github.io/iib-tutorials/js/json2.js"></script>
+		<script src="http://ot4i.github.io/iib-tutorials/js/js2java.js"></script>
+		<script src="http://ot4i.github.io/iib-tutorials/js/js2java_steps.js"></script>
+		<script src="http://ot4i.github.io/iib-tutorials/js/vendor/modernizr.js"></script>
+	</head>
+<!-- header::End -->
+<!-- body::Start -->
+		<body>
+  	<!-- body content here -->
+	<div class="row">
+	  <div class="small-12 medium-12 large-12 columns">
+	    <p> </p>
+	  </div>
+	</div>
+	<div class="row">
+	  <div class="small-9 medium-9 large-9 columns">
+	    <h4 class="title">Exploring the Admin REST Api <action><button class="small radius button" tabindex="0" id="stepsViewDetails" onclick="viewDetails()"> View Details</button> </action></h4>
+	  </div>
+	  <div class="small-3 medium-3 large-3 columns">
+		<a href="javascript:;" onclick="openHelpSystem('/com.ibm.etools.msgbroker.helphome.doc/help_home_msgbroker.htm')" class="small right helplink">IBM Knowledge Center</a> 
+	  </div>
+	</div> 
+	<hr>
+	<div class="row">
+		<div class="small-10 medium-10 large-10 columns">
+		<h5> Learn interact with Integration Servers and Nodes using our Admin REST Api. </h5>
+		</div>
+		<div class="small-2 medium-2 large-2 columns">
+			<button class="small radius button right" tabindex="0" id="backToGallery" onclick="backToGallery()"> Back To Gallery
+			</button>
+		</div>
+	</div>
+	<div class="row">          
+		  <div class="small-12 medium-12 large-12 columns">
+			<ul class="tabs vertical"> 
+				<li class="tab-title tab-title-small active">
+				  <a href="javascript:;" onclick="show('panel21')">Create</a> 
+				</li>
+				<li class="tab-title tab-title-small">
+				  <a href="javascript:;" onclick="show('panel31')">Prepare</a> 
+				</li>
+				<li class="tab-title tab-title-small">
+				  <a href="javascript:;" onclick="show('panel41')">Run</a> 
+				</li>
+			</ul>
+			<!-- editing -->
+			<div class="tabs-content panel-thin-blue vertical"> 
+		    	<div class="content active" id="panel21">
+		    		
+		    		<div class="small-10 medium-10 large-10 columns divider">
+					
+				      	<div class="row content-details">
+					      	<h4>Import projects</h4>
+					        
+						    
+								<p> When you click Import, 2 entities will be created in your workspace: the <span class="application">SimpleApp</span> application, conatining three message flows, and the <span class="application">SimpleBar</span> BAR file. </p>
+								
+							
+								<p> The contents of this tutorial will be explained in more detail when you move on to the Prepare tab. </p>
+								
+							
+						</div>
+						
+					</div>
+					
+					<div class="small-2 medium-2 large-2 columns">
+					
+					
+					<h4 class="tkaction"><a href="javascript:;" onclick="importArtifacts(); openResource('EventRoutingFlow')"> Import <img class="icon-image" src="http://ot4i.github.io/iib-tutorials/images/icons/ibmdesign/back-right-previous_128-orange.png"></a></h4>
+										
+				    </div>
+					
+		    	</div>
+		    	<div class="content" id="panel31">
+					
+		    		<div class="small-10 medium-10 large-10 columns divider">
+					
+						<div class="row content-details">
+						  	<h4>Prepare an Integration Server</h4>
+						    
+						    
+								<p>  </p>
+								
+								
+									
+									<ol>
+									
+									
+										<li> Assuming you are using a Windows platform, start up your Integration Server by typing the following command into the ACE Command Console:<br><code>IntegrationServer --name MyServer --work-dir C:\MyServer</code><br>Where C:\MyServer will be the working directory for your server.
+										
+										</li>
+									
+										<li> Open up your preferred web browser and type this link into the search bar:<br><code>localhost:7600/apidocs/</code>
+										
+										</li>
+									
+										<li> After a moment you should be presented with some comprehensive documentation on the Admin REST Api, specifically for your standalone server.
+										
+										</li>
+									
+										<li> Now, create and launch an Integration Node in a seperate ACE Command Console. By default the port for a node is 4414, which is what this tutorial will assume your port is.
+										
+										</li>
+									
+										<li> Once created and launched, open up a new tab in your web browser and connect to:<br><code>localhost:4414/apidocs/</code>
+										
+										</li>
+									
+										<li> You should be presented with a page of documentation again. However, there are a few key differences in the actions permitted by the Api when dealing with a node as opposed to a standalone server.
+										
+										</li>
+									
+										<li> Finally, deploy SimpleApp.bar to your standalone server.
+										
+										</li>
+									
+									
+									</ol>
+									
+								
+							
+						</div>
+							
+					</div>
+					
+					<div class="small-2 medium-2 large-2 columns">
+					
+					
+					<h4 class="tkaction"><a href="javascript:;" onclick="deployArtifacts()"> Deploy <img class="icon-image" src="http://ot4i.github.io/iib-tutorials/images/icons/ibmdesign/back-right-previous_128-orange.png"></a></h4>						
+				    					
+				    </div>
+					
+		    	</div>
+		    	<div class="content" id="panel41">
+		    		
+		    		<div class="small-10 medium-10 large-10 columns divider">
+					
+				    	<div class="row content-details">
+					      	<h4>Follow these steps to complete the tutorial</h4>
+					        
+						    
+								<p> Standalone server: </p>
+								
+								
+									
+									<ol>
+									
+									
+										<li> Open the tab with the documentation for your standalone server.<br>On the left hand side you should see all the available actions through the api. In this part of the tutorial we are going to GET the details for this server, DEPLOY a simple application to the server, interact with this application on the server and then shut down the server; all from the documentation.
+										
+										</li>
+									
+										<li> Click on the <code>GET /</code> tab in the list of actions. The body of the docs should change to present you with all the details on this action. You'll be presented with the description of the action, it's parameters (and their structure), example requests from various languages (curl, python etc.) and examples of the standard responses.<br>Go back to the top of this page and select the 'Try it' tab.
+										
+										</li>
+									
+										<li> Here you can run the action against your server as an example. Don't change anything for now, go ahead and click 'Send' in the bottom-right. After a brief pause you should be presented with the real request to, and response from, your server.
+										
+										</li>
+									
+										<li> Scrolling down and inspecting the JSON response, you should see a few sections:<br> - The name and type of your server at the very top<br> - A section called 'actions' which shows you all the valid actions on the server itself<br> - Below sections such as 'applications', 'policies' and 'restApis' with details on whether they contain any children.
+										
+										</li>
+									
+										<li> If you go down to <code>GET /applications</code> on the left and try that out the response should display the name 'SimpleApp'
+										
+										</li>
+									
+										<li> Run a <code>GET /applications/{application}</code> to get more details about a deployed application. Change the parameters of the request to 'SimpleApp'.
+										
+										</li>
+									
+										<li> Finally, navigate to <code>POST /shutdown</code> and trigger a shutdown event to stop the server. Refreshing the page or checking the ACE Command Console will confirm whether the server has actually terminated or not.
+										
+										</li>
+									
+									
+									</ol>
+									
+								
+							
+								<p> Integration Node: </p>
+								
+								
+									
+									<ol>
+									
+									
+										<li> In this section we will assume you have completed the above tutorial for the standalone server.
+										
+										</li>
+									
+										<li> Open the tab with the documentation for your integration node.<br>On the left hand side you should see all the available actions through the api. In this part of the tutorial we are going to create a server under the node, fetch the server properties and then remove the server all from within this documentation.
+										
+										</li>
+									
+										<li> Navigate to <code>GET /servers</code> and Try it out. After sending the request to the Node you should recieve a response, either showing that there are no child servers or displaying details about any existing ones.
+										
+										</li>
+									
+										<li> Now, navigate to <code>POST /servers</code> and proceed to the 'Try it' section. Generate an input for the Body field and then simply change the name to 'myNodeServer' for now. Click 'Send' and run another <code>GET /servers</code> to see the updated server list.
+										
+										</li>
+									
+										<li> Assuming the above steps have gone well, navigate to <code>GET /servers/{server}</code> and the 'Try it' section. Copy the name of your newly created server into the 'Path' field and click send. The response at the bottom of the page should then present all the properties of the newly created server to you.
+										
+										</li>
+									
+										<li> Then, navigate to <code>POST /servers/{server}/stop</code> then under 'Try it' input the name of your new server and click 'Send' to stop the server. This may take a while, wait patiently.
+										
+										</li>
+									
+										<li> Finally, navigate to <code>DELETE /servers/{server}</code> then under 'Try it' input the name of your stopped server and click 'Send' to delete the server.
+										
+										</li>
+									
+										<li> Run one last get request against the Node to check that the server doesn't exist anymore.
+										
+										</li>
+									
+									
+									</ol>
+									
+								
+							
+						</div>
+							
+					</div>
+					
+					<div class="small-2 medium-2 large-2 columns">
+					
+					
+					
+					
+					
+					<h4 class="tkaction"><a href="javascript:;" onclick="cleanUp()" title="Clean up and remove any changes in your workspace made by the tutorial."> Clean Up <img class="icon-image" src="http://ot4i.github.io/iib-tutorials/images/icons/ibmdesign/close-cancel-error_128-red.png"></a></h4>
+				    
+					
+				    </div>
+					
+				</div>	
+			</div> <!-- tab-content -->
+		</div> <!-- columns -->
+	  </div> <!-- row --></body>
+		<script src="http://ot4i.github.io/iib-tutorials/js/vendor/jquery.js"></script>
+		<script src="http://ot4i.github.io/iib-tutorials/js/vendor/foundation.min.js"></script>
+		<script src="http://ot4i.github.io/iib-tutorials/js/main.js"></script>
+	</body>
+<!-- body::End -->
+
+</html>
