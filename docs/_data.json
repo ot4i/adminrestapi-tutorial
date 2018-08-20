@@ -151,7 +151,10 @@
                                 "details": "Once created and launched, open up a new tab in your web browser and connect to:<br><code>localhost:4414/apidocs/</code>"
                             },
                             {
-                                "details": "Once again you should be presented with a page of documentation. However, there are a few key differences in the actions permitted by the Api when dealing with a node as opposed to a standalone server."
+                                "details": "You should be presented with a page of documentation again. However, there are a few key differences in the actions permitted by the Api when dealing with a node as opposed to a standalone server."
+                            },
+                            {
+                                "details": "Finally, deploy SimpleApp.bar to your standalone server."
                             }
                           ]
                         }
@@ -199,13 +202,10 @@
                                         "details": "Scrolling down and inspecting the JSON response, you should see a few sections:<br> - The name and type of your server at the very top<br> - A section called 'actions' which shows you all the valid actions on the server itself<br> - Below sections such as 'applications', 'policies' and 'restApis' with details on whether they contain any children."
                         				    },
                         				    {
-                                        "details": "As you can see in the 'actions' section, one of the actions we can perform is 'deploy'. Navigate within the list on the left to <code>POST /deploy</code> and 'Try it'.<br>Generate a Body for the request by using the 'Generate' button above the entry box, then include:<code>LINK TO BAR</code>"
+                                        "details": "If you go down to <code>GET /applications</code> on the left and try that out the response should display the name 'SimpleApp'"
                         				    },
                         				    {
-                                        "details": "After deployment, you should now see that after running another <code>GET /</code> on your server Applications now has children. If you go down to <code>GET /applications</code> on the left and try that out the response should display the name 'SimpleApp'"
-                        				    },
-                        				    {
-                                        "details": "Run a <code>GET /applications/{application}</code> to get more details about the deployed application. Change the parameters of the request as necessary."
+                                        "details": "Run a <code>GET /applications/{application}</code> to get more details about a deployed application. Change the parameters of the request to 'SimpleApp'."
                         				    },
                         				    {
                                         "details": "Finally, navigate to <code>POST /shutdown</code> and trigger a shutdown event to stop the server. Refreshing the page or checking the ACE Command Console will confirm whether the server has actually terminated or not."
