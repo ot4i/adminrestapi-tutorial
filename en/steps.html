@@ -24,13 +24,13 @@
 		
 		<title>IBM Integration Bus V10 Tutorial</title>
 
-    	<link rel="stylesheet" href="http://ot4i.github.io/iib-tutorials/css/main.css" />
-		<link rel="stylesheet" href="http://ot4i.github.io/iib-tutorials/css/app.css" />
+    	<link rel="stylesheet" href="https://ot4i.github.io/iib-tutorials/css/main.css" />
+		<link rel="stylesheet" href="https://ot4i.github.io/iib-tutorials/css/app.css" />
     	
-		<script src="http://ot4i.github.io/iib-tutorials/js/json2.js"></script>
-		<script src="http://ot4i.github.io/iib-tutorials/js/js2java.js"></script>
-		<script src="http://ot4i.github.io/iib-tutorials/js/js2java_steps.js"></script>
-		<script src="http://ot4i.github.io/iib-tutorials/js/vendor/modernizr.js"></script>
+		<script src="https://ot4i.github.io/iib-tutorials/js/json2.js"></script>
+		<script src="https://ot4i.github.io/iib-tutorials/js/js2java.js"></script>
+		<script src="https://ot4i.github.io/iib-tutorials/js/js2java_steps.js"></script>
+		<script src="https://ot4i.github.io/iib-tutorials/js/vendor/modernizr.js"></script>
 	</head>
 <!-- header::End -->
 <!-- body::Start -->
@@ -43,7 +43,7 @@
 	</div>
 	<div class="row">
 	  <div class="small-9 medium-9 large-9 columns">
-	    <h4 class="title">Exploring the Admin REST Api <action><button class="small radius button" tabindex="0" id="stepsViewDetails" onclick="viewDetails()"> View Details</button> </action></h4>
+	    <h4 class="title">Getting started with ACEv11 - Exploring the Admin REST API <action><button class="small radius button" tabindex="0" id="stepsViewDetails" onclick="viewDetails()"> View Details</button> </action></h4>
 	  </div>
 	  <div class="small-3 medium-3 large-3 columns">
 		<a href="javascript:;" onclick="openHelpSystem('/com.ibm.etools.msgbroker.helphome.doc/help_home_msgbroker.htm')" class="small right helplink">IBM Knowledge Center</a> 
@@ -52,7 +52,7 @@
 	<hr>
 	<div class="row">
 		<div class="small-10 medium-10 large-10 columns">
-		<h5> Learn interact with Integration Servers and Nodes using our Admin REST Api. </h5>
+		<h5> Learn some basics about administering ACE using its administrative REST API </h5>
 		</div>
 		<div class="small-2 medium-2 large-2 columns">
 			<button class="small radius button right" tabindex="0" id="backToGallery" onclick="backToGallery()"> Back To Gallery
@@ -82,10 +82,7 @@
 					      	<h4>Import projects</h4>
 					        
 						    
-								<p> When you click Import, 2 entities will be created in your workspace: the <span class="application">SimpleApp</span> application, conatining three message flows, and the <span class="application">SimpleBar</span> BAR file. </p>
-								
-							
-								<p> The contents of this tutorial will be explained in more detail when you move on to the Prepare tab. </p>
+								<p> Click Import and the <span class="application">ExampleApp</span> application project will be imported into your workspace. It contains three message flows <span class="application">HTTPEcho1</span>, <span class="application">HTTPEcho2</span> and <span class="application">HTTPEcho3</span>, and the BAR file named <span class="application">ExampleDeploy.bar</span>. </p>
 								
 							
 						</div>
@@ -95,14 +92,14 @@
 					<div class="small-2 medium-2 large-2 columns">
 					
 					
-					<h4 class="tkaction"><a href="javascript:;" onclick="importArtifacts(); openResource('EventRoutingFlow')"> Import <img class="icon-image" src="http://ot4i.github.io/iib-tutorials/images/icons/ibmdesign/back-right-previous_128-orange.png"></a></h4>
+					<h4 class="tkaction"><a href="javascript:;" onclick="importArtifacts(); openResource('EventRoutingFlow')"> Import <img class="icon-image" src="https://ot4i.github.io/iib-tutorials/images/icons/ibmdesign/back-right-previous_128-orange.png"></a></h4>
 										
 				    </div>
 					
 		    	</div>
 		    	<div class="content" id="panel31">
 					
-		    		<div class="small-10 medium-10 large-10 columns divider">
+					<div class="small-12 medium-12 large-12 columns">
 					
 						<div class="row content-details">
 						  	<h4>Prepare an Integration Server</h4>
@@ -115,31 +112,23 @@
 									<ol>
 									
 									
-										<li> Assuming you are using a Windows platform, start up your Integration Server by typing the following command into the ACE Command Console:<br><code>IntegrationServer --name MyServer --work-dir C:\MyServer</code><br>Where C:\MyServer will be the working directory for your server.
+										<li> Assuming you are using a Windows platform, open an App Connect Enterprise Command Console and start an Integration Server by typing the following command: <br><code>IntegrationServer --name MyServer --work-dir C:\MyServer --admin-rest-api 7600 --http-port-number 7900 --console-log</code><br>Where C:\MyServer will be the working directory for your Integration Server.
 										
 										</li>
 									
-										<li> Open up your preferred web browser and type this link into the search bar:<br><code>localhost:7600/apidocs/</code>
+										<li> You can deploy the provided BAR file to your Integration Server using the Toolkit. This technique is described in several other tutorials, but to demonstrate the administrative REST API (which the App Connect Enterprise Toolkit and administrative Web UI both utilise), in this example we will deploy using the following cURL command:<br><code>curl -X POST http://localhost:7600/apiv2/deploy --data-binary @C:\YourToolkitWorkspace\ExampleApp\ExampleDeploy.bar  -H "Content-Type: application/octet-stream" </code><br>Where C:\YourToolkitWorkspace is the directory location of your App Connect Enterprise Toolkit's workspace.
 										
 										</li>
 									
-										<li> After a moment you should be presented with some comprehensive documentation on the Admin REST Api, specifically for your standalone server.
+										<li> Open up your preferred web browser and go to this URL:<br><code>http://localhost:7600/apidocs</code><br>You will be presented a page containing comprehensive documentation on the administrative REST API, which can be used to control your Integration Server.
 										
 										</li>
 									
-										<li> Now, create and launch an Integration Node in a seperate ACE Command Console. By default the port for a node is 4414, which is what this tutorial will assume your port is.
+										<li> Launch a separate App Connect Enterprise Command Console.  Create and start an Integration Node by typing the following commands:<br><code>mqsicreatebroker MyNode -P 4414<br>&nbsp;mqsistart MyNode<br>&nbsp;mqsilist</code><br>The last mqsilist command should return a message like this:<br><code>BIP1325I: Integration node 'MyNode' with administration URI 'http://YourHostName:4414' is running.</code>
 										
 										</li>
 									
-										<li> Once created and launched, open up a new tab in your web browser and connect to:<br><code>localhost:4414/apidocs/</code>
-										
-										</li>
-									
-										<li> You should be presented with a page of documentation again. However, there are a few key differences in the actions permitted by the Api when dealing with a node as opposed to a standalone server.
-										
-										</li>
-									
-										<li> Finally, deploy SimpleApp.bar to your standalone server.
+										<li> Back in your preferred web browser, open a new tab and go to this URL:<br><code>http://localhost:4414/apidocs</code><br>You will be presented a similar documentation page, however there are a few key differences in the actions provided by the administrative REST API when dealing with a node as opposed to a server, which we will explore in the Run stage of the tutorial.
 										
 										</li>
 									
@@ -151,55 +140,52 @@
 						</div>
 							
 					</div>
-					
-					<div class="small-2 medium-2 large-2 columns">
-					
-					
-					<h4 class="tkaction"><a href="javascript:;" onclick="deployArtifacts()"> Deploy <img class="icon-image" src="http://ot4i.github.io/iib-tutorials/images/icons/ibmdesign/back-right-previous_128-orange.png"></a></h4>						
-				    					
-				    </div>
 					
 		    	</div>
 		    	<div class="content" id="panel41">
 		    		
-		    		<div class="small-10 medium-10 large-10 columns divider">
+					<div class="small-12 medium-12 large-12 columns">
 					
 				    	<div class="row content-details">
-					      	<h4>Follow these steps to complete the tutorial</h4>
+					      	<h4>Exercise the administrative REST API</h4>
 					        
 						    
-								<p> Standalone server: </p>
+								<p> <b>Interact with the Integration Server:</b>
 								
 								
 									
 									<ol>
 									
 									
-										<li> Open the tab with the documentation for your standalone server.<br>On the left hand side you should see all the available actions through the api. In this part of the tutorial we are going to GET the details for this server, DEPLOY a simple application to the server, interact with this application on the server and then shut down the server; all from the documentation.
+										<li> In the web browser tab for your Integration Server (http://localhost:7600/apidocs), on the left side you will see all the available actions in the API. In this part of the tutorial we will view the details for this server, view details about the deployed application, stop the deployed application and then start it again; all from within the interactive documentation.
 										
 										</li>
 									
-										<li> Click on the <code>GET /</code> tab in the list of actions. The body of the docs should change to present you with all the details on this action. You'll be presented with the description of the action, it's parameters (and their structure), example requests from various languages (curl, python etc.) and examples of the standard responses.<br>Go back to the top of this page and select the 'Try it' tab.
+										<li> Click on the <code>GET /</code> tab in the list of actions. The body of the docs should change to present you with all the details on this particular action. You'll be presented with the description of the action, its parameters (and their structure), example requests from different languages (curl, python etc.) and examples of the standard responses. At the top of the web page, select the 'Try it' tab.
 										
 										</li>
 									
-										<li> Here you can run the action against your server as an example. Don't change anything for now, go ahead and click 'Send' in the bottom-right. After a brief pause you should be presented with the real request to, and response from, your server.
+										<li> Here you can run the action against your server as an example. Don't change anything from the defaults, and just click 'Send' in the bottom right. You will see the real request to your server and its response.
 										
 										</li>
 									
-										<li> Scrolling down and inspecting the JSON response, you should see a few sections:<br> - The name and type of your server at the very top<br> - A section called 'actions' which shows you all the valid actions on the server itself<br> - Below sections such as 'applications', 'policies' and 'restApis' with details on whether they contain any children.
+										<li> Scroll down and inspect the JSON response, and you will see a few sections:<br> - The name and type of your server at the very top<br> - A section called 'actions' which shows you all the valid actions which can be conducted on the server<br> - Further sections showing content which has been deployed to the server, such as 'applications', 'restApis', 'services' and 'policies', with details on whether they contain any further children.
 										
 										</li>
 									
-										<li> If you go down to <code>GET /applications</code> on the left and try that out the response should display the name 'SimpleApp'
+										<li> Run a <code>GET /applications</code> to view the currently deployed applications. You will see the application which you deployed earlier, named 'ExampleApp'
 										
 										</li>
 									
-										<li> Run a <code>GET /applications/{application}</code> to get more details about a deployed application. Change the parameters of the request to 'SimpleApp'.
+										<li> Run a <code>GET /applications/{application}</code> (changing the Application parameter to be 'ExampleApp') to view details about a particular deployed application.
 										
 										</li>
 									
-										<li> Finally, navigate to <code>POST /shutdown</code> and trigger a shutdown event to stop the server. Refreshing the page or checking the ACE Command Console will confirm whether the server has actually terminated or not.
+										<li> Run a <code>POST /applications/{application}/stop</code> (changing the Application parameter to be 'ExampleApp') to stop the ExampleApp application.
+										
+										</li>
+									
+										<li> Run a <code>POST /applications/{application}/start</code> (changing the Application parameter to be 'ExampleApp') to start the ExampleApp application.
 										
 										</li>
 									
@@ -208,42 +194,38 @@
 									
 								
 							
-								<p> Integration Node: </p>
+								</p><p> <b>Interact with the Integration Node:</b> </p>
 								
 								
 									
 									<ol>
 									
 									
-										<li> In this section we will assume you have completed the above tutorial for the standalone server.
+										<li> In the web browser tab for your Integration Node (http://localhost:4414/apidocs) for your integration node, on the left side you will see all the available actions in the API. In this part of the tutorial we will create a server under the node, view the server's properties and then delete the server; all from within the interactive documentation.
 										
 										</li>
 									
-										<li> Open the tab with the documentation for your integration node.<br>On the left hand side you should see all the available actions through the api. In this part of the tutorial we are going to create a server under the node, fetch the server properties and then remove the server all from within this documentation.
+										<li> Navigate to <code>GET /servers</code> and proceed to the 'Try it' section. Send the request to the Integration Node and you will receive a response, showing that there are currently no child Integration Servers.
 										
 										</li>
 									
-										<li> Navigate to <code>GET /servers</code> and Try it out. After sending the request to the Node you should recieve a response, either showing that there are no child servers or displaying details about any existing ones.
+										<li> Navigate to <code>POST /servers</code> and proceed to the 'Try it' section. In the Body field use the following JSON to specify the name of an integration server which will be created: <code>{"name":"MyNodeOwnedServer"}</code>. Click 'Send' and then run another <code>GET /servers</code> to see the updated list of servers.
 										
 										</li>
 									
-										<li> Now, navigate to <code>POST /servers</code> and proceed to the 'Try it' section. Generate an input for the Body field and then simply change the name to 'myNodeServer' for now. Click 'Send' and run another <code>GET /servers</code> to see the updated server list.
+										<li> Navigate to <code>GET /servers/{server}</code> and the 'Try it' section. Copy the name <code>MyNodeOwnedServer</code> of your newly created server into the 'Path' field and click 'Send'. The response at the bottom of the page will show all the properties of the newly created server.
 										
 										</li>
 									
-										<li> Assuming the above steps have gone well, navigate to <code>GET /servers/{server}</code> and the 'Try it' section. Copy the name of your newly created server into the 'Path' field and click send. The response at the bottom of the page should then present all the properties of the newly created server to you.
+										<li> Navigate to <code>POST /servers/{server}/stop</code> and the 'Try it' section. Copy the name <code>MyNodeOwnedServer</code> of your newly created server into the 'Path' field and click 'Send'. This may take a while, so please be patient.
 										
 										</li>
 									
-										<li> Then, navigate to <code>POST /servers/{server}/stop</code> then under 'Try it' input the name of your new server and click 'Send' to stop the server. This may take a while, wait patiently.
+										<li> Navigate to <code>DELETE /servers/{server}</code> and the 'Try it' section. Input the name of the stopped server, <code>MyNodeOwnedServer</code> and click 'Send' to delete it.
 										
 										</li>
 									
-										<li> Finally, navigate to <code>DELETE /servers/{server}</code> then under 'Try it' input the name of your stopped server and click 'Send' to delete the server.
-										
-										</li>
-									
-										<li> Run one last get request against the Node to check that the server doesn't exist anymore.
+										<li> Run one last <code>GET /servers</code> request to check that the server has been successfully deleted.
 										
 										</li>
 									
@@ -255,25 +237,14 @@
 						</div>
 							
 					</div>
-					
-					<div class="small-2 medium-2 large-2 columns">
-					
-					
-					
-					
-					
-					<h4 class="tkaction"><a href="javascript:;" onclick="cleanUp()" title="Clean up and remove any changes in your workspace made by the tutorial."> Clean Up <img class="icon-image" src="http://ot4i.github.io/iib-tutorials/images/icons/ibmdesign/close-cancel-error_128-red.png"></a></h4>
-				    
-					
-				    </div>
 					
 				</div>	
 			</div> <!-- tab-content -->
 		</div> <!-- columns -->
 	  </div> <!-- row --></body>
-		<script src="http://ot4i.github.io/iib-tutorials/js/vendor/jquery.js"></script>
-		<script src="http://ot4i.github.io/iib-tutorials/js/vendor/foundation.min.js"></script>
-		<script src="http://ot4i.github.io/iib-tutorials/js/main.js"></script>
+		<script src="https://ot4i.github.io/iib-tutorials/js/vendor/jquery.js"></script>
+		<script src="https://ot4i.github.io/iib-tutorials/js/vendor/foundation.min.js"></script>
+		<script src="https://ot4i.github.io/iib-tutorials/js/main.js"></script>
 	</body>
 <!-- body::End -->
 
