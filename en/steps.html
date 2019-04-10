@@ -124,11 +124,11 @@
 										
 										</li>
 									
-										<li> Launch a separate App Connect Enterprise Command Console.  Create and start an Integration Node by typing the following commands:<br><code>mqsicreatebroker MyNode -P 4414<br>&nbsp;mqsistart MyNode<br>&nbsp;mqsilist</code><br>The last mqsilist command should return a message like this:<br><code>BIP1325I: Integration node 'MyNode' with administration URI 'http://YourHostName:4414' is running.</code>
+										<li> Launch a separate App Connect Enterprise Command Console.  Create and start an Integration Node by typing the following commands:<br><code>mqsicreatebroker MyNode<br>&nbsp;mqsistart MyNode<br>&nbsp;mqsilist</code><br>The last mqsilist command should return a message like this:<br><code>BIP1325I: Integration node 'MyNode' with administration URI 'http://YourHostName:YourPortNumber' is running.</code> where YourHostName is your machine's hostname and YouPortNumber is an available port, starting from 4414.
 										
 										</li>
 									
-										<li> Back in your preferred web browser, open a new tab and go to this URL:<br><code>http://localhost:4414/apidocs</code><br>You will be presented a similar documentation page, however there are a few key differences in the actions provided by the administrative REST API when dealing with a node as opposed to a server, which we will explore in the Run stage of the tutorial.
+										<li> Back in your preferred web browser, open a new tab and go to your URL which will be similar to this:<br><code>http://localhost:4414/apidocs</code><br>You will be presented a similar documentation page, however there are a few key differences in the actions provided by the administrative REST API when dealing with a node as opposed to a server, which we will explore in the Run stage of the tutorial.
 										
 										</li>
 									
@@ -161,7 +161,7 @@
 										
 										</li>
 									
-										<li> Click on the <code>GET /</code> tab in the list of actions. The body of the docs should change to present you with all the details on this particular action. You'll be presented with the description of the action, its parameters (and their structure), example requests from different languages (curl, python etc.) and examples of the standard responses. At the top of the web page, select the 'Try it' tab.
+										<li> Click on the <code>GET /apiv2</code> tab in the list of actions. The body of the docs should change to present you with all the details on this particular action. You'll be presented with the description of the action, its parameters (and their structure), example requests from different languages (curl, python etc.) and examples of the standard responses. At the top of the web page, select the 'Try it' tab.
 										
 										</li>
 									
@@ -173,19 +173,19 @@
 										
 										</li>
 									
-										<li> Run a <code>GET /applications</code> to view the currently deployed applications. You will see the application which you deployed earlier, named 'ExampleApp'
+										<li> Run a <code>GET /apiv2/applications</code> to view the currently deployed applications. You will see the application which you deployed earlier, named 'ExampleApp'
 										
 										</li>
 									
-										<li> Run a <code>GET /applications/{application}</code> (changing the Application parameter to be 'ExampleApp') to view details about a particular deployed application.
+										<li> Run a <code>GET /apiv2/applications/{application}</code> (changing the Application parameter to be 'ExampleApp') to view details about a particular deployed application.
 										
 										</li>
 									
-										<li> Run a <code>POST /applications/{application}/stop</code> (changing the Application parameter to be 'ExampleApp') to stop the ExampleApp application.
+										<li> Run a <code>POST /apiv2/applications/{application}/stop</code> (changing the Application parameter to be 'ExampleApp') to stop the ExampleApp application.
 										
 										</li>
 									
-										<li> Run a <code>POST /applications/{application}/start</code> (changing the Application parameter to be 'ExampleApp') to start the ExampleApp application.
+										<li> Run a <code>POST /apiv2/applications/{application}/start</code> (changing the Application parameter to be 'ExampleApp') to start the ExampleApp application.
 										
 										</li>
 									
@@ -205,27 +205,27 @@
 										
 										</li>
 									
-										<li> Navigate to <code>GET /servers</code> and proceed to the 'Try it' section. Send the request to the Integration Node and you will receive a response, showing that there are currently no child Integration Servers.
+										<li> Navigate to <code>GET /apiv2/servers</code> and proceed to the 'Try it' section. Send the request to the Integration Node and you will receive a response, showing that there are currently no child Integration Servers.
 										
 										</li>
 									
-										<li> Navigate to <code>POST /servers</code> and proceed to the 'Try it' section. In the Body field use the following JSON to specify the name of an integration server which will be created: <code>{"name":"MyNodeOwnedServer"}</code>. Click 'Send' and then run another <code>GET /servers</code> to see the updated list of servers.
+										<li> Navigate to <code>POST /apiv2/servers</code> and proceed to the 'Try it' section. In the Body field use the following JSON to specify the name of an integration server which will be created: <code>{"name":"MyNodeOwnedServer"}</code>. Click 'Send' and then run another <code>GET /servers</code> to see the updated list of servers.
 										
 										</li>
 									
-										<li> Navigate to <code>GET /servers/{server}</code> and the 'Try it' section. Copy the name <code>MyNodeOwnedServer</code> of your newly created server into the 'Path' field and click 'Send'. The response at the bottom of the page will show all the properties of the newly created server.
+										<li> Navigate to <code>GET /apiv2/servers/{server}</code> and the 'Try it' section. Copy the name <code>MyNodeOwnedServer</code> of your newly created server into the 'Path' field and click 'Send'. The response at the bottom of the page will show all the properties of the newly created server.
 										
 										</li>
 									
-										<li> Navigate to <code>POST /servers/{server}/stop</code> and the 'Try it' section. Copy the name <code>MyNodeOwnedServer</code> of your newly created server into the 'Path' field and click 'Send'. This may take a while, so please be patient.
+										<li> Navigate to <code>POST /apiv2/servers/{server}/stop</code> and the 'Try it' section. Copy the name <code>MyNodeOwnedServer</code> of your newly created server into the 'Path' field and click 'Send'. This may take a while, so please be patient.
 										
 										</li>
 									
-										<li> Navigate to <code>DELETE /servers/{server}</code> and the 'Try it' section. Input the name of the stopped server, <code>MyNodeOwnedServer</code> and click 'Send' to delete it.
+										<li> Navigate to <code>DELETE /apiv2/servers/{server}</code> and the 'Try it' section. Input the name of the stopped server, <code>MyNodeOwnedServer</code> and click 'Send' to delete it.
 										
 										</li>
 									
-										<li> Run one last <code>GET /servers</code> request to check that the server has been successfully deleted.
+										<li> Run one last <code>GET /apiv2/servers</code> request to check that the server has been successfully deleted.
 										
 										</li>
 									
