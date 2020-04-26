@@ -139,10 +139,10 @@
                                 "details": "Open up your preferred web browser and go to this URL:<br><code>http://localhost:7600/apidocs</code><br>You will be presented a page containing comprehensive documentation on the administrative REST API, which can be used to control your Integration Server."
                             },
                             {
-                                "details": "Launch a separate App Connect Enterprise Command Console.  Create and start an Integration Node by typing the following commands:<br><code>mqsicreatebroker MyNode -P 4414<br>&nbsp;mqsistart MyNode<br>&nbsp;mqsilist</code><br>The last mqsilist command should return a message like this:<br><code>BIP1325I: Integration node 'MyNode' with administration URI 'http://YourHostName:4414' is running.</code>"
+                                "details": "Launch a separate App Connect Enterprise Command Console.  Create and start an Integration Node by typing the following commands:<br><code>mqsicreatebroker MyNode<br>&nbsp;mqsistart MyNode<br>&nbsp;mqsilist</code><br>The last mqsilist command should return a message like this:<br><code>BIP1325I: Integration node 'MyNode' with administration URI 'http://YourHostName:YourPortNumber' is running.</code> where YourHostName is your machine's hostname and YouPortNumber is an available port, starting from 4414."
                             },
                             {
-                                "details": "Back in your preferred web browser, open a new tab and go to this URL:<br><code>http://localhost:4414/apidocs</code><br>You will be presented a similar documentation page, however there are a few key differences in the actions provided by the administrative REST API when dealing with a node as opposed to a server, which we will explore in the Run stage of the tutorial."
+                                "details": "Back in your preferred web browser, open a new tab and go to your URL which will be similar to this:<br><code>http://localhost:4414/apidocs</code><br>You will be presented a similar documentation page, however there are a few key differences in the actions provided by the administrative REST API when dealing with a node as opposed to a server, which we will explore in the Run stage of the tutorial."
                             }
                           ]
                         }
@@ -170,7 +170,7 @@
                                         "details": "In the web browser tab for your Integration Server (http://localhost:7600/apidocs), on the left side you will see all the available actions in the API. In this part of the tutorial we will view the details for this server, view details about the deployed application, stop the deployed application and then start it again; all from within the interactive documentation."
                                     },
                                     {
-                                        "details": "Click on the <code>GET /</code> tab in the list of actions. The body of the docs should change to present you with all the details on this particular action. You'll be presented with the description of the action, its parameters (and their structure), example requests from different languages (curl, python etc.) and examples of the standard responses. At the top of the web page, select the 'Try it' tab."
+                                        "details": "Click on the <code>GET /apiv2</code> tab in the list of actions. The body of the docs should change to present you with all the details on this particular action. You'll be presented with the description of the action, its parameters (and their structure), example requests from different languages (curl, python etc.) and examples of the standard responses. At the top of the web page, select the 'Try it' tab."
                                     },
                                     {
                                         "details": "Here you can run the action against your server as an example. Don't change anything from the defaults, and just click 'Send' in the bottom right. You will see the real request to your server and its response."
@@ -179,16 +179,16 @@
                                         "details": "Scroll down and inspect the JSON response, and you will see a few sections:<br> - The name and type of your server at the very top<br> - A section called 'actions' which shows you all the valid actions which can be conducted on the server<br> - Further sections showing content which has been deployed to the server, such as 'applications', 'restApis', 'services' and 'policies', with details on whether they contain any further children."
                         				    },
                         				    {
-                                        "details": "Run a <code>GET /applications</code> to view the currently deployed applications. You will see the application which you deployed earlier, named 'ExampleApp'"										
+                                        "details": "Run a <code>GET /apiv2/applications</code> to view the currently deployed applications. You will see the application which you deployed earlier, named 'ExampleApp'"										
                         				    },
                         				    {
-                                        "details": "Run a <code>GET /applications/{application}</code> (changing the Application parameter to be 'ExampleApp') to view details about a particular deployed application."
+                                        "details": "Run a <code>GET /apiv2/applications/{application}</code> (changing the Application parameter to be 'ExampleApp') to view details about a particular deployed application."
                         				    },
                         				    {
-                                        "details": "Run a <code>POST /applications/{application}/stop</code> (changing the Application parameter to be 'ExampleApp') to stop the ExampleApp application."
+                                        "details": "Run a <code>POST /apiv2/applications/{application}/stop</code> (changing the Application parameter to be 'ExampleApp') to stop the ExampleApp application."
 										},
 										{
-                                        "details": "Run a <code>POST /applications/{application}/start</code> (changing the Application parameter to be 'ExampleApp') to start the ExampleApp application."
+                                        "details": "Run a <code>POST /apiv2/applications/{application}/start</code> (changing the Application parameter to be 'ExampleApp') to start the ExampleApp application."
 										}
                                 ]
                             }
@@ -204,22 +204,22 @@
                                         "details": "In the web browser tab for your Integration Node (http://localhost:4414/apidocs) for your integration node, on the left side you will see all the available actions in the API. In this part of the tutorial we will create a server under the node, view the server's properties and then delete the server; all from within the interactive documentation."
 									},
                                     {
-                                        "details": "Navigate to <code>GET /servers</code> and proceed to the 'Try it' section. Send the request to the Integration Node and you will receive a response, showing that there are currently no child Integration Servers."
+                                        "details": "Navigate to <code>GET /apiv2/servers</code> and proceed to the 'Try it' section. Send the request to the Integration Node and you will receive a response, showing that there are currently no child Integration Servers."
                                     },
                                     {
-                                        "details": "Navigate to <code>POST /servers</code> and proceed to the 'Try it' section. In the Body field use the following JSON to specify the name of an integration server which will be created: <code>{\"name\":\"MyNodeOwnedServer\"}</code>. Click 'Send' and then run another <code>GET /servers</code> to see the updated list of servers."
+                                        "details": "Navigate to <code>POST /apiv2/servers</code> and proceed to the 'Try it' section. In the Body field use the following JSON to specify the name of an integration server which will be created: <code>{\"name\":\"MyNodeOwnedServer\"}</code>. Click 'Send' and then run another <code>GET /servers</code> to see the updated list of servers."
                                     },
                                     {
-                                        "details": "Navigate to <code>GET /servers/{server}</code> and the 'Try it' section. Copy the name <code>MyNodeOwnedServer</code> of your newly created server into the 'Path' field and click 'Send'. The response at the bottom of the page will show all the properties of the newly created server."
+                                        "details": "Navigate to <code>GET /apiv2/servers/{server}</code> and the 'Try it' section. Copy the name <code>MyNodeOwnedServer</code> of your newly created server into the 'Path' field and click 'Send'. The response at the bottom of the page will show all the properties of the newly created server."
                                     },
                                     {
-                                        "details": "Navigate to <code>POST /servers/{server}/stop</code> and the 'Try it' section. Copy the name <code>MyNodeOwnedServer</code> of your newly created server into the 'Path' field and click 'Send'. This may take a while, so please be patient."
+                                        "details": "Navigate to <code>POST /apiv2/servers/{server}/stop</code> and the 'Try it' section. Copy the name <code>MyNodeOwnedServer</code> of your newly created server into the 'Path' field and click 'Send'. This may take a while, so please be patient."
                                     },
                                     {
-                                        "details": "Navigate to <code>DELETE /servers/{server}</code> and the 'Try it' section. Input the name of the stopped server, <code>MyNodeOwnedServer</code> and click 'Send' to delete it."
+                                        "details": "Navigate to <code>DELETE /apiv2/servers/{server}</code> and the 'Try it' section. Input the name of the stopped server, <code>MyNodeOwnedServer</code> and click 'Send' to delete it."
                                     },
                                     {
-                                        "details": "Run one last <code>GET /servers</code> request to check that the server has been successfully deleted."
+                                        "details": "Run one last <code>GET /apiv2/servers</code> request to check that the server has been successfully deleted."
                                     }
                                 ]
                             }
