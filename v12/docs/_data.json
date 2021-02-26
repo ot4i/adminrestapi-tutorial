@@ -32,7 +32,7 @@
   	{
         "_common":
     		{
-            "name": "Getting started with ACEv11 - Exploring the Admin REST API",
+            "name": "Getting started with ACEv12 - Exploring the Admin REST API",
             "shortDescription": "Learn some basics about administering ACE using its administrative REST API",
             "durationText": "This tutorial takes approximately",
             "durationTime": "15 minutes",
@@ -79,9 +79,6 @@
                     },
                     {
                         "section": "We will access the documentation which is served directly from the App Connect Enterprise runtime. The tutorial will guide you through the similarities and differences depending on whether you are communicating with an Integration Node or Integration Server. Example REST API invocations will be used to accomplish some basic tasks like creation of servers, deployment of a BAR file, and viewing descriptive information about what is running."
-                    },
-                    {
-                        "section": "This new style of documentation introduced in App Connect Enterprise v11 is even easier to find and makes it simpler to interact with the product. "
                     }
                 ]
             }
@@ -132,9 +129,6 @@
                             {
                                 "details": "From the Integration Explorer view in the bottom left corner of the Toolkit, right-click the Integration Servers folder and select the option to <span class='uicontrol'>Create a local integration server</span>. Leave all the options with their default values and click Finish. The local Integration Server will be started, using a project in your Toolkit's workspace as the work directory. Click OK to dismiss the Success dialog. Well done, you've just created a standalone Integration Server hosted locally on your own machine!"
                             },
-							{
-                                "details": "<b>This step is only required if you are using a Toolkit earlier than version 11.0.0.7</b>. If you're using a Toolkit earlier than version 11.0.0.7, then you will not find a menu option to <span class='uicontrol'>Create a local integration server</span>. Instead, you will need to open an App Connect Enterprise Command Console and start an integration server in that console session. This alternate option is also detailed in the <a href='https://www.ibm.com/support/knowledgecenter/en/SSTTDS_11.0.0/com.ibm.etools.mft.doc/bn03995_.html'>Knowledge Center</a>. Open an App Connect Enterprise Command Console and start an integration server using the following command:<br><ul><li>If you are using a Windows platform: <code>IntegrationServer --work-dir C:\\MyServer --name MyServer --admin-rest-api 7600 --http-port-number 7900 --console-log</code> <br>where <b>C:\\MyServer</b> is a folder on your file system that the server will use for its working directory.</li><li>If you are using a UNIX platform: <code>IntegrationServer --work-dir /home/exampleuser/MyServer --name MyServer --admin-rest-api 7600 --http-port-number 7900 --console-log</code> <br>where <b>/home/exampleuser/MyServer</b> is a folder on your file system that the server will use for its working directory.</li></ul> After a few seconds the server should report that it has finished initialization and that its HTTP Listener has started listening for connections."
-                            },							  
                             {
                                 "details": "You can deploy the provided BAR file to your Integration Server using the Toolkit. This technique is described in several other tutorials, but to demonstrate the administrative REST API (which the App Connect Enterprise Toolkit and administrative Web UI both utilise), in this example we will deploy using the following cURL command:<br><ul><li>If you are using a Windows platform: <code>curl -X POST http://localhost:7600/apiv2/deploy --data-binary @C:\\YourToolkitWorkspace\\ExampleApp\\ExampleDeploy.bar  -H \"Content-Type: application/octet-stream\" </code> where <b>C:\\YourToolkitWorkspace</b> is the directory location of your App Connect Enterprise Toolkit's workspace.</li><li>If you are using a UNIX platform: <code>curl -X POST http://localhost:7600/apiv2/deploy --data-binary /YourToolkitWorkspace/ExampleApp/ExampleDeploy.bar</code> where <b>/YourToolkitWorkspace</b> is the directory location of your App Connect Enterprise Toolkit's workspace.</li></ul>"
 							},							
