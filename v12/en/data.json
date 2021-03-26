@@ -32,8 +32,8 @@
   	{
         "_common":
     		{
-            "name": "Getting started with ACEv12 - Exploring the Admin REST API",
-            "shortDescription": "Learn some basics about administering ACE using its administrative REST API",
+            "name": "Getting started - Exploring the Admin REST API",
+            "shortDescription": "Learn some basics about administration using the Admin REST API",
             "durationText": "This tutorial takes approximately",
             "durationTime": "15 minutes",
             "_resourceToOpenComment": "The ID of the first resource to open when the user imports the tutorial. Resource IDs are defined in the repo_metadata.json Tutorials listing on ot4i.",
