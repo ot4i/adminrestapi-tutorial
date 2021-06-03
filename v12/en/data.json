@@ -157,7 +157,7 @@
                     "sections":
           					[
                         {
-                            "section": "<b>Interact with the Integration Server:</b",
+                            "section": "<b>Interact with the Integration Server:</b>",
                             "steps":
               							{
                                 "type": "ordered",
